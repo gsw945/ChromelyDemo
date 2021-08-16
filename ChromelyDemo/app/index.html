@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Chromely Demo</title>
+</head>
+<body>
+    <h1>Hello Chromely</h1>
+    <hr />
+    <ul>
+        <li><a href="http://command.chromely/democontroller/showdevtools">Show DevTools</a></li>
+        <li><a href="https://gsw945.com/">玖亖伍</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        /*
+        // Create and send a new query.
+        var request_id = window.cefQuery({
+            request: 'my_request',
+            persistent: false,
+            onSuccess: function (response) { },
+            onFailure: function (error_code, error_message) { }
+        });
+
+        // Optionally cancel the query.
+        window.cefQueryCancel(request_id)
+        */
+        function messageRouterResult(response) {
+            var jsonData = JSON.parse(response);
+            if (jsonData.ReadyState == 4 && jsonData.Status == 200) {
+                // process response
+            }
+        }
+
+        function messageRouterRun() {
+            var request = {
+                "method": "GET",
+                "url": "/democontroller/movies",
+                "parameters": null,
+                "postData": null,
+            };
+            window.cefQuery({
+                request: JSON.stringify(request),
+                onSuccess: function (response) {
+                    messageRouterResult(response);
+                }, onFailure: function (err, msg) {
+                    console.log(err, msg);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

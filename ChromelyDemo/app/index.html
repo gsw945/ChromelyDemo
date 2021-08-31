@@ -6,6 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Chromely Demo</title>
+    <link rel="stylesheet" type="text/css" href="./static/libs/tui.grid-v4.18.1/tui-grid.min.css" />
+    <style type="text/css">
+        .demo-area {
+            position: relative;
+        }
+        .demo-left {
+            position: absolute;
+            left: 0;
+            width: 30%;
+        }
+        .demo-right {
+            position: absolute;
+            right: 0;
+            width: 70%;
+        }
+    </style>
 </head>
 <body>
     <h1>Hello Chromely</h1>
@@ -14,7 +30,26 @@
         <li><a href="http://command.chromely/democontroller/showdevtools">Show DevTools</a></li>
         <li><a href="https://gsw945.com/">玖亖伍</a></li>
     </ul>
+    <hr />
+    <div class="demo-area">
+        <ul class="demo-left">
+            <li><button id="btn-request-movies">request movies</button></li>
+            <li><button id="btn-danfojs-demo">danfojs demo</button></li>
+            <li><button id="btn-danfojs-demo2">danfojs demo2</button></li>
+            <li><button id="btn-danfojs-demo3">danfojs demo3</button></li>
+        </ul>
+        <div class="demo-right">
+            <!--<pre>please view result at Console panel of DevTools</pre>-->
+            <div class="demo-result"></div>
+        </div>
+    </div>
 
+    <script type="text/javascript" src="./static/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./static/libs/lodash-4.17.21/lodash.min.js"></script>
+    <script type="text/javascript" src="./static/libs/tui.grid-v4.18.1/tui-grid.min.js"></script>
+    <script type="text/javascript" src="./static/libs/plotly.js-2.3.1/plotly.min.js"></script>
+    <script type="text/javascript" src="./static/libs/plotly.js-2.3.1/plotly-locale-zh-cn.min.js"></script>
+    <script type="text/javascript" src="./static/libs/danfojs-0.2.7/bundle.js"></script>
     <script type="text/javascript">
         /*
         // Create and send a new query.
@@ -29,6 +64,7 @@
         window.cefQueryCancel(request_id)
         */
         function messageRouterResult(response) {
+            console.log(response);
             var jsonData = JSON.parse(response);
             if (jsonData.ReadyState == 4 && jsonData.Status == 200) {
                 // process response
@@ -44,13 +80,156 @@
             };
             window.cefQuery({
                 request: JSON.stringify(request),
+                persistent: false,
                 onSuccess: function (response) {
                     messageRouterResult(response);
-                }, onFailure: function (err, msg) {
-                    console.log(err, msg);
+                },
+                onFailure: function (error_code, error_message) {
+                    console.log(error_code, error_message);
                 }
             });
         }
+
+        function runDanfojsDemo() {
+            var s = new dfd.Series([1, 3, 5, undefined, 6, 8]);
+            s.print();
+        }
+
+        function runDanfojsDemo2() {
+            let data = {
+                'A': ['foo', 'bar', 'foo', 'bar',
+                    'foo', 'bar', 'foo', 'foo'],
+                'B': ['one', 'one', 'two', 'three',
+                    'two', 'two', 'one', 'three'],
+                'C': [1, 3, 2, 4, 5, 2, 6, 7],
+                'D': [3, 2, 4, 1, 5, 6, 7, 8]
+            }
+            let df = new dfd.DataFrame(data)
+            showPlot(df);
+            let grp = df.groupby(["B"])
+            debugger
+        }
+
+        function showPlot(df) {
+            var header_style = {
+                align: "center",
+                fill: { color: ['gray'] },
+                font: { family: "Arial", size: 15, color: "white" }
+            };
+            var cell_style = {
+                align: ["center"],
+                line: { color: "black", width: 1 }
+            };
+            df.plot(document.querySelector(".demo-area .demo-right .demo-result")).table({
+                header_style: header_style,
+                cell_style: cell_style
+            });
+        }
+
+
+        function runDanfojsDemo3() {
+            let data = [
+                {
+                    "Controller": "Demo",
+                    "Action": "CallActor",
+                    "Parameters": 1,
+                    "Template": "api/Demo/call-actor",
+                    "Name": "Api.Demo.CallActor",
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "Demo",
+                    "Action": "CallSignalR",
+                    "Parameters": 2,
+                    "Template": "api/Demo/call-signalr",
+                    "Name": "Api.Demo.CallSignalR",
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "GameServers",
+                    "Action": "GetAllocate",
+                    "Parameters": 3,
+                    "Template": "GameServers/Allocate",
+                    "Name": null,
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "GameServers",
+                    "Action": "GetAllocations",
+                    "Parameters": 4,
+                    "Template": "GameServers/Allocations",
+                    "Name": null,
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "GameServers",
+                    "Action": "GetDeallocate",
+                    "Parameters": 5,
+                    "Template": "GameServers/Deallocate",
+                    "Name": null,
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "GameServers",
+                    "Action": "GetQos",
+                    "Parameters": 6,
+                    "Template": "GameServers/qos/fleets/{fleet}/servers",
+                    "Name": null,
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "Ip",
+                    "Action": "Index",
+                    "Parameters": 7,
+                    "Template": "api/Ip",
+                    "Name": "Api.Ip",
+                    "HttpMethods": "GET"
+                },
+                {
+                    "Controller": "RouteList",
+                    "Action": "Index",
+                    "Parameters": 8,
+                    "Template": "api/RouteList",
+                    "Name": "Api.RouteList",
+                    "HttpMethods": "GET"
+                }
+            ];
+            let df = new dfd.DataFrame(data)
+            let grp = df.groupby(['Controller'])
+            var result = [];
+            _.forEach(grp.col_dict, function (value, key) {
+                console.log(key, '\t->\t', value);
+                /*
+                // 形式1
+                var group = _.map(value, function (row) {
+                    return _.zipObject(grp.column_name, row);
+                });
+                var df_group = new dfd.DataFrame(group);
+                */
+                // 形式2
+                var df_group = new dfd.DataFrame(value, { columns: grp.column_name });
+                var sum = df_group["Parameters"].sum();
+                result.push({
+                    "Controller": key,
+                    "ParametersSum": sum
+                });
+                df_group.addColumn({
+                    column: "ParametersSum",
+                    value: Array(df_group.index.length).fill(sum)
+                });
+                df_group.print();
+                delete df_group
+            });
+            let df_result = new dfd.DataFrame(result)
+            showPlot(df_result);
+        }
+
+        $(document).ready(function () {
+            $('#btn-request-movies').on('click', messageRouterRun);
+            $('#btn-danfojs-demo').on('click', runDanfojsDemo);
+            $('#btn-danfojs-demo2').on('click', runDanfojsDemo2);
+            $('#btn-danfojs-demo3').on('click', runDanfojsDemo3);
+        })
     </script>
 </body>
 </html>

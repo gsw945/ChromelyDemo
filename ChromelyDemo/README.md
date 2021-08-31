@@ -4,3 +4,18 @@
 - [Loading HTML](https://github.com/chromelyapps/Chromely/wiki/loading-html)
 - [Network Service](https://github.com/chromelyapps/Chromely/blob/master/Documents/network.md)
 - [Generic Message Routing](https://github.com/chromelyapps/Chromely/blob/master/Documents/generic_message_routing.md)
+- https://api.jquery.com/on/
+- https://github.com/exceljs/exceljs
+- https://github.com/SheetJS/sheetjs
+- https://github.com/dtjohnson/xlsx-populate
+- [Python Pandas equivalent in JavaScript](https://stackoverflow.com/questions/30610675/python-pandas-equivalent-in-javascript/43825646#43825646)
+- https://lodash.com/
+- https://www.jsdelivr.com/package/npm/lodash
+- https://www.lodashjs.com/docs/lodash.forEach
+- danfojs
+	- https://github.com/opensource9ja/danfojs
+	- https://danfo.jsdata.org/getting-started
+	- https://www.jsdelivr.com/package/npm/danfojs?path=lib
+	- https://www.jsdelivr.com/package/npm/plotly
+- https://github.com/nhn/tui.grid
+- https://github.com/nhn/tui.grid/tree/master/packages/toast-ui.grid

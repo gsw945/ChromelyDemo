@@ -23,6 +23,8 @@ namespace ChromelyDemo
             // model.Remove((int)CefMenuId.ViewSource);
             model.AddItem((int)CefMenuId.Forward, "前进");
             model.AddItem((int)CefMenuId.Reload, "重新载入");
+            model.AddItem((int)CefMenuId.ReloadNoCache, "重新载入(无缓存)");
+            model.AddItem((int)CefMenuId.ViewSource, "查看源码");
             model.AddItem((int)CefMenuId.Back, "后退");
 
             if (_config.DebuggingMode)

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <!--<OutputType>Exe</OutputType>-->
+	<OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
@@ -14,6 +15,8 @@
   <ItemGroup>
     <None Update="app\**\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </None>
   </ItemGroup>
 

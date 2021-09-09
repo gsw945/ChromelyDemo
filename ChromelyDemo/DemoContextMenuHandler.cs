@@ -7,12 +7,7 @@ namespace ChromelyDemo
 {
     public class DemoContextMenuHandler : DefaultContextMenuHandler
     {
-        private readonly IChromelyConfiguration _config;
-
-        public DemoContextMenuHandler(IChromelyConfiguration config) : base(config)
-        {
-            _config = config;
-        }
+        public DemoContextMenuHandler(IChromelyConfiguration config) : base(config) { }
 
         protected override void OnBeforeContextMenu(CefBrowser browser, CefFrame frame, CefContextMenuParams state, CefMenuModel model)
         {// To disable the menu then call clear

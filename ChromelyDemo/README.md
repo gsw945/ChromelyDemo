@@ -4,6 +4,9 @@
 - [Loading HTML](https://github.com/chromelyapps/Chromely/wiki/loading-html)
 - [Network Service](https://github.com/chromelyapps/Chromely/blob/master/Documents/network.md)
 - [Generic Message Routing](https://github.com/chromelyapps/Chromely/blob/master/Documents/generic_message_routing.md)
+- [CEF Binaries Download](https://github.com/chromelyapps/Chromely/blob/master/Documents/cef_binaries_download.md)
+- [Logging](https://github.com/chromelyapps/Chromely/wiki/Logging)
+- [How to Save Console.WriteLine Output to Text File](https://stackoverflow.com/questions/4470700/how-to-save-console-writeline-output-to-text-file/4470751#4470751)
 - https://api.jquery.com/on/
 - https://github.com/exceljs/exceljs
 - https://github.com/SheetJS/sheetjs

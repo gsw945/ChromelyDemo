@@ -2,7 +2,6 @@
 using Chromely.Core.Configuration;
 using Chromely.Core.Network;
 using System.Collections.Generic;
-using Xilium.CefGlue;
 
 namespace ChromelyDemo
 {
